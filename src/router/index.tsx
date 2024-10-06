@@ -6,7 +6,7 @@ import {
  } 
  from "react-router-dom";
 import App from "../App";  
-import { SignIn,SignUp,MainLayout,Products,Categories,Brands,BrandCategories,Ads,Stock,Setting } from "@pages";
+import { SignIn,SignUp,MainLayout,Products,Categories,Brands,BrandCategories,Ads,Stock,Setting,SubCategory } from "@pages";
 const Index = () => {
     const router = createBrowserRouter(
         createRoutesFromElements(
@@ -16,6 +16,7 @@ const Index = () => {
                 <Route path="main/*" element={<MainLayout/>}>
                     <Route index element={<Products/>}/>
                     <Route path="categories" element={<Categories/>}/>
+                    <Route path="categories/:id" element={<SubCategory/>}/>
                     <Route path="brands" element={<Brands/>}/>
                     <Route path="brand-categories" element={<BrandCategories/>}/>
                     <Route path="ads" element={<Ads/>}/>

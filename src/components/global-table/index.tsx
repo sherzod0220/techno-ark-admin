@@ -14,7 +14,7 @@ interface CustomTableProps {
   columns: any[]
 }
 
-const Table: React.FC<CustomTableProps> = ({ data, pagination, onChange,columns }) => {
+const Table = ({ data, pagination, onChange,columns }:CustomTableProps) => {
   return (
     <AntdTable
       columns={columns}
