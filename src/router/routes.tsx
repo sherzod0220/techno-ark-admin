@@ -15,12 +15,12 @@ import {
     },
     {
       title: "Categories",
-      path: "/main/category",
+      path: "/main/categories",
       icon: <AppstoreOutlined style={{fontSize: "22px"}}/>,
     },
     {
       title: "Brands",
-      path: "/main/brand",
+      path: "/main/brands",
       icon: <TagsOutlined style={{fontSize: "22px"}}/>,
     },
     {

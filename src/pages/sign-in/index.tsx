@@ -1,9 +1,9 @@
 import {auth} from "@service"
 import { saveData } from "@token-service"
-
 import type { FormProps } from 'antd';
 import { Button, Form, Input } from 'antd';
 import { useNavigate } from "react-router-dom"
+import Notification from "@notification";
 import img from '../../assets/login.svg'
 type FieldType = {
     phone_number: string;
@@ -17,8 +17,11 @@ const Index = () => {
         try {
           const response: any = await auth.sign_in(values)
           if (response && response.status === 201) {
-              // Notification({type: "success", message: "Login successfully !"})
-            //   Notification({message: "Login successfully",type: "success", showProgress: true,pauseOnHover:true})
+            // Notification({
+            //     message: "Login successfully!",
+            //     type: "success",
+            //   });
+              Notification({message: "Login successfully",type: "success", showProgress: true,pauseOnHover:true})
             const data = response.data?.data;
             // const id = 
             if (data && data.tokens && data.tokens.access_token) {
@@ -54,7 +57,7 @@ const Index = () => {
       }
   return (
     <div className="flex h-[100vh]">
-        <div className="w-[50%] flex justify-center items-center">
+        <div className="w-[50%] flex justify-center items-center bg-[#fffef2]">
             <img src={img} alt="" className="w-[50%]"/>
         </div>
         <div className='w-[50%] flex justify-center items-center gap-[20px] flex-col px-[50px]'>
@@ -89,7 +92,7 @@ const Index = () => {
 
         
             <Form.Item  className=''>
-                <Button type="primary" className='py-[20px] text-[18px]' htmlType="submit" style={{background: "#e74c3c", width:"100%"}}>
+                <Button type="primary" className='py-[20px] text-[18px]' htmlType="submit" style={{background: "#d55200", width:"100%"}}>
                     Login
                 </Button>
             </Form.Item>
