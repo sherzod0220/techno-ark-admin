@@ -7,7 +7,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { BrandCategoryActions } from "@modals";
 import { BrandService } from "@service";
 import { GlobalDelete } from '@components'
-// import notification from "antd";
+import Notification from "@notification";
 const Index = () => {
   const [data, setData] = useState([]);
   const [open,setOpen] = useState(false)
@@ -83,17 +83,18 @@ const Index = () => {
     try {
       const response = await BrandCategoryService.delete(id);
       if (response?.status === 200) {
-        // notification.success({
-        //   message: "Brand Category deleted successfully",
-        // });
+        Notification({
+          type:"success",
+          title: "Brand Category deleted successfully",
+        });
         // setIsModalVisible(false);
         // onSuccess();
       }
     } catch (error: any) {
-      // notification.error({
-      //   message: "Failed to delete brand category",
-      //   description: error?.response?.data?.message || "Something went wrong",
-      // });
+      Notification({
+        title: `Failed to delete brand category! ${error?.response?.data?.message} Something went wrong`,
+        type:"error"
+      });
     }
     // setLoading(false);
   };
@@ -129,7 +130,6 @@ const Index = () => {
       align: "center",
       render: (_text: string, record: any) => (
         <Space size={"middle"}>
-          
           <Tooltip title="Edit">
             <Button
               type="default"

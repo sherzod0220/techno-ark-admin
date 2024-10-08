@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Input, Modal,notification } from "antd";
+import { Button, Form, Input, Modal } from "antd";
+import Notification from "@notification";
 import { CategoryService } from "@service";
 
 interface PropType {
@@ -34,14 +35,15 @@ const UpdateCreateCategoryModal = ({ open, handleCancel, category,getData }:Prop
         const response = await CategoryService.update(category.id, { name: values.name });
         getData()
         if (response.status === 200) {
-          notification.success({
-            message: "Category updated successfully!",
+          Notification({
+            type: "success",
+            title: "Category updated successfully!",
           });
         }
       } catch (error: any) {
-        notification.error({
-          message: "Failed to update category",
-          description: error?.response?.data?.message || "Something went wrong",
+        Notification({
+          type:"error",
+          title: `Failed to update category,  ${error?.response?.data?.message} || "Something went wrong" `,
         });
       } finally {
         setLoading(false);
@@ -52,15 +54,16 @@ const UpdateCreateCategoryModal = ({ open, handleCancel, category,getData }:Prop
         const response = await CategoryService.create({ name: values.name });
         getData()
         if (response.status === 201) {
-          notification.success({
-            message: "Category added successfully!",
+          Notification({
+            type:"success",
+            title: "Category added successfully!",
           });
           form.resetFields();
         }
       } catch (error: any) {
-        notification.error({
-          message: "Failed to add category",
-          description: error?.response?.data?.message || "Something went wrong",
+        Notification({
+          title: `Failed to add category ,  ${error?.response?.data?.message}  Something went wrong`,
+          type:"error"
         });
       }
       console.log("Creating category:", values);

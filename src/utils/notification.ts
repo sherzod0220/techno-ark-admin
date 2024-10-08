@@ -1,44 +1,24 @@
-// import { notification } from 'antd';
-// import { IconType } from 'antd/es/notification/interface';
-// type IProp = {
-//   message: string
-//   type: IconType
-//   description?: string
-//   showProgress: boolean
-//   pauseOnHover: boolean
-// }
-  
-//   const Notification = (prop: IProp) => {
-//     const {message, type, description,showProgress ,pauseOnHover} = prop
-//     notification.open({
-//       message: message,
-//       type: type,
-//       description: description,
-//       showProgress: showProgress,
-//       pauseOnHover: pauseOnHover,
-//     });
-//   };
-//   export default Notification
+import { TypeOptions, Zoom, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import  'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
-interface IType {
-  title: string,
-  type: any,
+interface NotificationProp {
+  title: string;
+  type: TypeOptions | undefined;
 }
-const Notification = (props:IType) => {
-    const {title, type} = props
-    return toast(title, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        type: type,
+
+const Notification = (props: NotificationProp) => {
+    return toast(props.title, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      transition: Zoom,
+      type: props.type,
+      theme: "light"
     });
-}
+};
 
-export default Notification
+export default Notification;

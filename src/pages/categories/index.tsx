@@ -6,7 +6,7 @@ import { Button, Space, Tooltip } from "antd";
 import { EditOutlined,ArrowsAltOutlined } from "@ant-design/icons";
 import { Category } from "@modals";
 import { GlobalDelete } from "@components"
-import { notification } from "antd";
+import Notification from "@notification";
 
 const Index = () => {
   const [data, setData] = useState([]);
@@ -84,16 +84,17 @@ const Index = () => {
       const response = await CategoryService.delete(id);
       getData()
       if (response?.status === 200) {
-        notification.success({
-          message: "Category deleted successfully",
+        Notification({
+          title: "Category deleted successfully",
+          type: "success"
         });
         // setIsModalVisible(false);
         // onSuccess();
       }
     } catch (error: any) {
-      notification.error({
-        message: "Failed to delete category",
-        description: error?.response?.data?.message || "Something went wrong",
+      Notification({
+        type: "error",
+        title: `Failed to delete category , ${error?.response?.data?.message} Something went wrong`,
       });
     }
     // setLoading(false);

@@ -7,7 +7,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { SubCategoryAddUpdate } from "@modals";
 import { useParams } from "react-router-dom";
 import { GlobalDelete } from "@components"
-import { notification } from "antd";
+import Notification from "@notification";
 const Index = () => {
   const [data, setData] = useState([]);
   const [open,setOpen] = useState(false)
@@ -24,7 +24,6 @@ const Index = () => {
     page: 1,
     limit: 10,
   });
- 
   const getData = async () => {
     try {
       const response = await SubCategoryService.get(params);
@@ -83,16 +82,17 @@ const Index = () => {
     try {
       const response = await SubCategoryService.delete(id);
       if (response?.status === 200) {
-        notification.success({
-          message: "Category deleted successfully",
+        Notification({
+          title: "Category deleted successfully",
+          type:"success"
         });
         // setIsModalVisible(false);
         // onSuccess();
       }
     } catch (error: any) {
-      notification.error({
-        message: "Failed to delete category",
-        description: error?.response?.data?.message || "Something went wrong",
+      Notification({
+        title: `Failed to delete category! ${error?.response?.data?.message} || "Something went wrong"`,
+        type: "error",
       });
     }
     // setLoading(false);

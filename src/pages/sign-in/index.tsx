@@ -3,8 +3,9 @@ import { saveData } from "@token-service";
 import type { FormProps } from "antd";
 import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
-import notification from "@notification";
-import { ToastContainer } from "react-toastify";
+import Notification from "@notification";
+// import Notification from "../ads";
+// import { ToastContainer } from "react-toastify";
 import img from "../../assets/login.svg";
 type FieldType = {
   phone_number: string;
@@ -18,13 +19,11 @@ const Index = () => {
     try {
       const response: any = await auth.sign_in(values);
       if (response && response.status === 201) {
-        notification({
+        Notification({
           title: "Login successfully!",
           type: "success",
         });
-        //   Notification({message: "Login successfully",type: "success", showProgress: true,pauseOnHover:true})
         const data = response.data?.data;
-        // const id =
         if (data && data.tokens && data.tokens.access_token) {
           const {
             tokens: { access_token },
@@ -38,15 +37,18 @@ const Index = () => {
           console.error(
             "Tokens or access_token is missing in the response data"
           );
-          //   Notification({type: "error",message: "error" ,description: "Tokens or access_token is missing in the response data", showProgress: true,pauseOnHover:true})
+          Notification({
+            type: "error",
+            title: 'Tokens or access_token is missing in the response data'
+          })
         }
       } else {
         console.error(`Unexpected response status: ${response?.status}`);
-        // Notification({type: "error",message: "error" ,description: `Unexpected response status: ${response?.status}`, showProgress: true,pauseOnHover:true})
+        Notification({type: "error",title: `Erro!  Unexpected response status: ${response?.status}`})
       }
     } catch (error) {
       console.error("Error during sign-in:", error);
-      //   Notification({type: "error",message: "incorrect phone number or password, try again" ,description: `Error during sign-in: ${error}`, showProgress: true,pauseOnHover:true})
+        Notification({type: "error",title: `incorrect phone number or password, try again, Error during sign-in: ${error}`})
     }
   };
 
@@ -60,7 +62,7 @@ const Index = () => {
   };
   return (
     <>
-        <ToastContainer/>
+        {/* <ToastContainer/> */}
       <div className="flex h-[100vh]">
         <div className="w-[50%] flex justify-center items-center bg-[#fffef2]">
           <img src={img} alt="" className="w-[50%]" />

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Input, Modal,notification } from "antd";
+import { Button, Form, Input, Modal } from "antd";
 import { SubCategoryService } from "@service";
 import { useParams } from 'react-router-dom';
-
+import Notification from "@notification";
 interface PropType {
   open: boolean,
   handleCancel:()=> void,
@@ -35,14 +35,15 @@ const UpdateCreateSubCategoryModal = ({ open, handleCancel, subcategory,getData 
         const response = await SubCategoryService.update(subcategory.id, { name: values.name,parent_category_id:Number(id) });
         getData()
         if (response.status === 200) { 
-          notification.success({
-            message: "Category updated successfully!",
+          Notification({
+            type:"success",
+            title: "Category updated successfully!",
           });
         }
       } catch (error: any) {
-        notification.error({
-          message: "Failed to update category",
-          description: error?.response?.data?.message || "Something went wrong",
+        Notification({
+          title: `Failed to update category ${error?.response?.data?.message} Something went wrong`,
+          type:"error"
         });
       } finally {
         setLoading(false);
@@ -53,15 +54,16 @@ const UpdateCreateSubCategoryModal = ({ open, handleCancel, subcategory,getData 
         const response = await SubCategoryService.create({parent_category_id: Number(id), name: values.name });
         getData()
         if (response.status === 201) {
-          notification.success({
-            message: "SubCategory added successfully!",
+          Notification({
+            title: "SubCategory added successfully!",
+            type:"success"
           });
           form.resetFields();
         }
       } catch (error: any) {
-        notification.error({
-          message: "Failed to add subcategory",
-          description: error?.response?.data?.message || "Something went wrong",
+        Notification({
+          title: `Failed to add subcategory! ${error?.response?.data?.message} Something went wrong`,
+          type: "error",
         });
       }
     }

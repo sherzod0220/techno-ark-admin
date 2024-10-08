@@ -7,7 +7,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { BrandsActions } from "@modals";
 import { CategoryService } from "@service";
 import { GlobalDelete } from '@components'
-// import notification from "antd";
+import Notification from '@notification';
 const Index = () => {
   const [data, setData] = useState([]);
   const [open,setOpen] = useState(false)
@@ -84,17 +84,16 @@ const Index = () => {
     try {
       const response = await BrandService.delete(id);
       if (response?.status === 200) {
-        // notification.success({
-        //   message: "Brand deleted successfully",
-        // });
-        // setIsModalVisible(false);
-        // onSuccess();
+        Notification({
+          type:"success",
+          title:"Brand successfully deleted!"
+        })
       }
     } catch (error: any) {
-      // notification.error({
-      //   message: "Failed to delete brand",
-      //   description: error?.response?.data?.message || "Something went wrong",
-      // });
+      Notification({
+        title: `Failed to delete brand! ${error?.response?.data?.message} || "Something went wrong`,
+        type:"error"
+      });
     }
     // setLoading(false);
   };
