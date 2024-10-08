@@ -20,10 +20,11 @@
 //   };
 //   export default Notification
 
-  import { toast } from 'react-toastify';
+import  'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 interface IType {
   title: string,
-  type: any
+  type: any,
 }
 const Notification = (props:IType) => {
     const {title, type} = props

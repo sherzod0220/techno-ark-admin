@@ -43,10 +43,6 @@ const App: React.FC = () => {
             minHeight: "100vh",
             width: "400px",
             overflow: "auto",
-            // position: "fixed",
-            // left: 0,
-            // top: 0,
-            // bottom: 0,
           }}
         width={250}  
         >

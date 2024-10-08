@@ -1,10 +1,41 @@
+import { ToastContainer, Zoom, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Index = () => {
+const MyComponent = () => {
+  const handleSuccess = () => {
+    toast('Muvaffaqiyatli amalga oshirildi!', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      transition: Zoom,
+      type: "success",
+
+    });
+  };
+
+  const handleError = () => {
+    toast.error('Xatolik yuz berdi!', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <div>
-      <h1>ads</h1>
+      <button onClick={handleError}>Xatolik xabari</button>
+      <button onClick={handleSuccess}>Muvaffaqiyatli xabar</button>
+      <ToastContainer />
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default MyComponent;
