@@ -3,5 +3,7 @@ import Category from './category'
 import SubCategoryAddUpdate from './sub-category'
 import BrandsActions from './brands'
 import BrandCategoryActions from './brand-category'
+import AdsActions from './ads'
+import StockActions from './stock'
 
-export { Logout,Category,SubCategoryAddUpdate,BrandsActions,BrandCategoryActions }
+export { Logout,Category,SubCategoryAddUpdate,BrandsActions,BrandCategoryActions,StockActions,AdsActions }

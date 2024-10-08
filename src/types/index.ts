@@ -78,3 +78,58 @@ export interface BrandCategory {
     delete: (id: string | number) => Promise<any>;
     get_by_id: ( id:number,params: IParams)=>any
 }
+
+// ====== Products ======
+interface IProductUpdate {
+    name: string,
+    price: number,
+    category_id: number,
+    brand_category_id: number,
+    brand_id: number
+}
+
+export interface Products {
+    get: (params: IParams)=> any
+    create: (data:CreateData) => Promise<any>;
+    update: (id: number | any | string, data: IProductUpdate) => Promise<any>;
+    delete: (id: string | number) => Promise<any>;
+    get_by_id: (id:string | number) => Promise<any>;
+    get_product_by_id: ( id:number,params: IParams)=>any
+}
+
+// ========= Stock =========
+interface StockCreate {
+    brand_id?: any | number
+    category_id: number
+    quantity: number
+    product_id: number
+}
+
+export interface Stock {
+    get: (params: IParams)=> any
+    create: (data:StockCreate) => Promise<any>;
+    update: (id: string | number, data: StockCreate) => Promise<any>;
+    delete: (id: string | number) => Promise<any>;
+}
+
+// ========== admin ============
+
+export interface Admin {
+    get_by_id: ( id:number)=>any
+    create: (data:CreateData) => Promise<any>;
+    update: (id: string | number, data: any) => Promise<any>;
+    delete: (id: string | number) => Promise<any>;
+}
+
+// ========= ADS =========
+// interface GetAds {
+//     name?: any | string
+// }
+interface CreateAds {
+    position: number | any
+}
+export interface Ads {
+    get: ()=> any
+    create: (data:CreateAds) => Promise<any>;
+    delete: (id: string | number) => Promise<any>;
+}
