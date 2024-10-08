@@ -79,6 +79,7 @@ const Index = () => {
     try {
       const response = await AdsService.delete(id);
       if (response?.status === 200) {
+        getData()
         Notification({
           type:"success",
           title: "Category deleted successfully",
@@ -140,7 +141,7 @@ const Index = () => {
   
   return (
     <div className="flex flex-col gap-[20px]">
-      <AdsActions open={open} handleCancel={handleCancel} category={category} />
+      <AdsActions open={open} handleCancel={handleCancel} category={category} getData={getData}/>
       <div className="flex justify-between items-center">
         <div className="flex justify-between my-2">
         <Tooltip title="Add Brand">
@@ -151,7 +152,7 @@ const Index = () => {
       <Table
         data={data}
         columns={columns}
-        pagination={{ pageSize: 5 }} onChange={function (): void {
+        pagination={{ pageSize: 10 }} onChange={function (): void {
           throw new Error("Function not implemented.");
         } }        // onChange={handleTableChange}
       />

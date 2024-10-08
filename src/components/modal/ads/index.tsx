@@ -6,8 +6,9 @@ interface PropType {
   open: boolean,
   handleCancel:()=> void,
   category: any,
+  getData:any,
 }
-const BrandModal = ({ open, handleCancel, category }:PropType) => {
+const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
 
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
@@ -38,6 +39,7 @@ const BrandModal = ({ open, handleCancel, category }:PropType) => {
         console.log(values,"vll");
         
         const response = await AdsService.create(formData);
+        getData()
         if (response?.status === 201) {
             Notification({
                 type: "success",
@@ -87,7 +89,7 @@ const BrandModal = ({ open, handleCancel, category }:PropType) => {
           <Form.Item>
             <Button
               size="large"
-              style={{ width: "100%",background:"#e74c3c" }}
+              style={{ width: "100%" }}
               type="primary"
               htmlType="submit"
               loading={loading}
