@@ -16,13 +16,11 @@ const Index = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const val = new URLSearchParams(location.search)
-  
   const [params, setParams] = useState({
     search: val.get('search') ||'',
     page: 1,
     limit: 10,
   });
-
   const getData = async () => {
     try {
       const response = await CategoryService.get(params);
@@ -34,7 +32,6 @@ const Index = () => {
       console.log(err);
     }
   };
-
   useEffect(() => {
     getData();
   }, [params]); // Fetch data whenever params change
@@ -77,14 +74,15 @@ const Index = () => {
     setOpen(false)
   }
   const moveSingle = (id: number) => {
-    console.log(id);
-    navigate(`/main/category/${id}`);
+    // console.log(id);
+    navigate(`/main/categories/${id}`);
   };
 
   const deleteData = async (id: number) => {
     // setLoading(true);
     try {
       const response = await CategoryService.delete(id);
+      getData()
       if (response?.status === 200) {
         notification.success({
           message: "Category deleted successfully",
@@ -155,14 +153,14 @@ const Index = () => {
   
   return (
     <div className="flex flex-col gap-[20px]">
-      <Category open={open} handleCancel={handleCancel} category={category} />
+      <Category open={open} handleCancel={handleCancel} category={category} getData={getData}/>
       <div className="flex justify-between items-center">
         <span className="w-[300px]">
             <Search params={params} setParams={setParams}/>
         </span>
         <div className="flex justify-between my-2">
         <Tooltip title="Add category">
-          <Button type="primary" onClick={()=>setOpen(true)} style={{background: "#e74c3c"}}>Add category</Button>
+          <Button type="primary" onClick={()=>setOpen(true)} style={{background: "#d55200"}}>Add category</Button>
         </Tooltip>
         </div>
       </div>

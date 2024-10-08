@@ -1,39 +1,40 @@
 import { useEffect, useState } from "react";
 import { Button, Form, Input, Modal,notification } from "antd";
-import { CategoryService } from "@service";
+import { SubCategoryService } from "@service";
+import { useParams } from 'react-router-dom';
 
 interface PropType {
   open: boolean,
   handleCancel:()=> void,
-  category: any,
-  getData: any,
+  subcategory: any,
+  getData: any
 }
-const UpdateCreateCategoryModal = ({ open, handleCancel, category,getData }:PropType) => {
+const UpdateCreateSubCategoryModal = ({ open, handleCancel, subcategory,getData }:PropType) => {
 
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
-//   console.log(category, 'category')
+  const {id} = useParams()
+
+  
   useEffect(() => {
-    if (category.name) {
+    if (subcategory.name) {
       form.setFieldsValue({
-        name: category.name,
+        name: subcategory.name,
       });
     } else {
       form.resetFields();
     }
-  }, [category, form]);
+  }, [subcategory, form]);
 
   const handleSubmit = async(values: any) => {
     setLoading(true);
-    // console.log(category.id,"id");
-    // console.log(category.name,"categpry name");
     
-    if (category.id) {
+    if (subcategory.id) {
       // Update the category
       try {
-        const response = await CategoryService.update(category.id, { name: values.name });
+        const response = await SubCategoryService.update(subcategory.id, { name: values.name,parent_category_id:Number(id) });
         getData()
-        if (response.status === 200) {
+        if (response.status === 200) { 
           notification.success({
             message: "Category updated successfully!",
           });
@@ -49,30 +50,31 @@ const UpdateCreateCategoryModal = ({ open, handleCancel, category,getData }:Prop
     } else {
       // Create a new category
       try {
-        const response = await CategoryService.create({ name: values.name });
+        const response = await SubCategoryService.create({parent_category_id: Number(id), name: values.name });
         getData()
         if (response.status === 201) {
           notification.success({
-            message: "Category added successfully!",
+            message: "SubCategory added successfully!",
           });
           form.resetFields();
         }
       } catch (error: any) {
         notification.error({
-          message: "Failed to add category",
+          message: "Failed to add subcategory",
           description: error?.response?.data?.message || "Something went wrong",
         });
       }
-      console.log("Creating category:", values);
     }
     setLoading(false);
     handleCancel(); // Close the modal after submission
   };
+
   return (
     <>
       <Modal
         open={open}
-        title={category.id ? "Edit category" : "Create category"}
+
+        title={subcategory.id ? "Edit subcategory" : "Create subcategory"}
         onCancel={handleCancel}
         footer={false}
       >
@@ -84,21 +86,21 @@ const UpdateCreateCategoryModal = ({ open, handleCancel, category,getData }:Prop
           layout="vertical"
         >
           <Form.Item
-            label="Category name"
+            label="Sub Category name"
             name="name"
-            rules={[{ required: true, message: "Enter category name" }]}
+            rules={[{ required: true, message: "Enter subcategory name" }]}
           >
             <Input size="large" />
           </Form.Item>
           <Form.Item>
             <Button
               size="large"
-              style={{ width: "100%" }}
+              style={{ width: "100%",background:"#d55200" }}
               type="primary"
               htmlType="submit"
               loading={loading}
             >
-              {category.id ? "Update" : "Add"}
+              {subcategory.id ? "Update" : "Add"}
             </Button>
           </Form.Item>
         </Form>
@@ -106,4 +108,5 @@ const UpdateCreateCategoryModal = ({ open, handleCancel, category,getData }:Prop
     </>
   );
 };
-export default UpdateCreateCategoryModal;
+
+export default UpdateCreateSubCategoryModal;

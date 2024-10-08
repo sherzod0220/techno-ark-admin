@@ -1,0 +1,125 @@
+import { useEffect, useState } from "react";
+import { Button, Form, Input, Modal,notification,Select } from "antd";
+// import { PlusOutlined } from '@ant-design/icons';
+import { BrandCategoryService } from "@service";
+const { Option } = Select;
+interface PropType {
+  open: boolean,
+  handleCancel:()=> void,
+  brandCategory: any,
+  categories: any,
+  getData: any,
+}
+const BrandModal = ({ open, handleCancel, brandCategory,categories,getData }:PropType) => {
+
+  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
+//   console.log(category, 'category')
+  useEffect(() => {
+    if (brandCategory.name) {
+      form.setFieldsValue({
+        name: brandCategory.name,
+        brand_id: brandCategory.brand_id,
+      });
+    } else {
+      form.resetFields();
+    }
+  }, [brandCategory, form]);
+  const handleSubmit = async(values: any) => {
+    setLoading(true);   
+    if (brandCategory.id) {
+      // Update the brand Category
+      try {
+            const response = await BrandCategoryService.update(brandCategory.id,{name: values.name, brand_id: values.brand_id});
+            getData()
+            if (response?.status === 201) {
+                notification.success({
+                    message: "Brand created successfully!",
+                  });
+              form.resetFields();
+            }
+      } catch (error: any) {
+        notification.error({
+          message: "Failed to update brand",
+          description: error?.response?.data?.message || "Something went wrong",
+        });
+      } finally {
+        setLoading(false);
+      }
+    } else {
+        try {
+            const response = await BrandCategoryService.create({name: values.name, brand_id: values.brand_id});
+            getData()
+            if (response?.status === 201) {
+                notification.success({
+                    message: "Brand created successfully!",
+                  });
+              form.resetFields();
+            }
+        } catch (error: any) {
+              notification.error({
+              message: "Failed to add brand",
+              description: error?.response?.data?.message || "Something went wrong",
+            });
+        }
+    }
+    setLoading(false);
+    handleCancel(); // Close the modal after submission
+  };
+
+  return (
+    <>
+      <Modal
+        open={open}
+
+        title={brandCategory.id ? "Edit brand" : "Create brand"}
+        onCancel={handleCancel}
+        footer={false}
+      >
+        <Form
+          form={form}
+          name="categoryForm"
+          style={{ width: "100%", marginTop: "20px" }}
+          onFinish={handleSubmit}
+          layout="vertical"
+        >
+          <Form.Item
+            label="Brand Category name"
+            name="name"
+            rules={[{ required: true, message: "Enter category name" }]}
+          >
+            <Input size="large" />
+          </Form.Item>
+
+          <Form.Item
+            label="Brand"
+            name="brand_id"
+            rules={[{ required: true, message: "Select a category" }]}
+          >
+            <Select placeholder="Select a category" size="large">
+              {categories.map((cat: any) => (
+                <Option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+   
+          <Form.Item>
+            <Button
+              size="large"
+              style={{ width: "100%",background:"#d55200" }}
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+            >
+              {brandCategory.id ? "Update" : "Add"}
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+    </>
+  );
+};
+
+export default BrandModal;

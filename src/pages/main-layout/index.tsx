@@ -24,7 +24,7 @@ const App: React.FC = () => {
     const currentRouteIndex = routes.findIndex(
       route => route.path === location.pathname
     );
-    console.log(currentRouteIndex);
+    // console.log(currentRouteIndex);
     if (currentRouteIndex !== -1) {
       setSelectedKey(currentRouteIndex.toString());
     }

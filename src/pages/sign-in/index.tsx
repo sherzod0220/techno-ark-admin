@@ -17,11 +17,11 @@ const Index = () => {
         try {
           const response: any = await auth.sign_in(values)
           if (response && response.status === 201) {
-            // Notification({
-            //     message: "Login successfully!",
-            //     type: "success",
-            //   });
-              Notification({message: "Login successfully",type: "success", showProgress: true,pauseOnHover:true})
+            Notification({
+                title: "Login successfully!",
+                type: "success",
+              });
+            //   Notification({message: "Login successfully",type: "success", showProgress: true,pauseOnHover:true})
             const data = response.data?.data;
             // const id = 
             if (data && data.tokens && data.tokens.access_token) {
