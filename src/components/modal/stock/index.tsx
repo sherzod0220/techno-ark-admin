@@ -8,28 +8,27 @@ const { Option } = Select;
 interface PropType {
   open: boolean,
   handleCancel:()=> void,
-  category: any,
+  stock: any,
   getData: any,
 //   categories: any,
 }
-const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
+const BrandModal = ({ open, handleCancel, stock,getData }:PropType) => {
 
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
-  console.log(category, 'category1')
   useEffect(() => {
-    if (category.id) {
+    if (stock.id) {
       form.setFieldsValue({
-        category_id: Number(category?.category_id?.id),
-        brand_id: Number(category?.brand_id),
-        product_id: Number(category?.product_id?.id),
-        quantity: Number(category?.quantity), 
+        category_id: Number(stock?.category_id?.id),
+        brand_id: Number(stock?.brand_id),
+        product_id: Number(stock?.product_id?.id),
+        quantity: Number(stock?.quantity), 
       });
     } else {
       form.resetFields();
     }
-  }, [category, form]);
-  console.log(category,"edit uchun");
+  }, [stock, form]);
+  console.log(stock,"edit uchun");
   
 
   const [categories, setCategories] = useState([]);
@@ -112,11 +111,8 @@ const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
 
   const handleSubmit = async(values: any) => {
     setLoading(true);
-    console.log(category.id,"id");
-    console.log(category.name,"categpry name");
-    
-    if (category.id) {
-      // Update the category
+    if (stock.id) {
+      // Update the stock
       try {
         const datas = {
             category_id: Number(values.category_id),
@@ -125,7 +121,7 @@ const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
             quantity: Number(values.quantity), 
         }            
             
-            const response = await StockService.update(category.id,datas);
+            const response = await StockService.update(stock.id,datas);
                         
             if (response?.status === 200) {
                 Notification({
@@ -177,7 +173,7 @@ const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
     <>
       <Modal
         open={open}
-        title={category.id ? "Edit brand" : "Create Product"}
+        title={stock.id ? "Edit brand" : "Create Product"}
         onCancel={handleCancel}
         footer={false}
       >
@@ -253,7 +249,7 @@ const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
               htmlType="submit"
               loading={loading}
             >
-              {category.id ? "Update" : "Add"}
+              {stock.id ? "Update" : "Add"}
             </Button>
           </Form.Item>
         </Form>

@@ -10,7 +10,7 @@ import Notification from "@notification";
 const Index = () => {
   const [data, setData] = useState([]);
   const [open,setOpen] = useState(false)
-  const [category,setCategory] = useState({})
+  const [stock,setStock] = useState({})
   const [total, setTotal] = useState(0); // To store the total number of items
   const location = useLocation()
   const navigate = useNavigate()
@@ -70,17 +70,13 @@ const Index = () => {
        navigate(`?${searchParams}`)
   };
   const openModal =(item:any)=>{  
-    setCategory(item)
+    setStock(item)
     setOpen(true)
   }
   const handleCancel =()=>{
-    setCategory({})
+    setStock({})
     setOpen(false)
   }
-  // const moveSingle = (id: number) => {
-  //   console.log(id);
-  //   navigate(`/main/category/${id}`);
-  // };
 
   const deleteData = async (id: number) => {
     // setLoading(true);
@@ -150,7 +146,7 @@ const Index = () => {
   
   return (
     <div className="flex flex-col gap-[20px]">
-      <StockActions open={open} handleCancel={handleCancel} category={category} getData={getData}/>
+      <StockActions open={open} handleCancel={handleCancel} stock={stock} getData={getData}/>
       <div className="flex justify-between items-center">
         <span className="w-[300px]">
             <Search params={params} setParams={setParams}/>
