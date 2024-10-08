@@ -144,15 +144,16 @@ const Index = () => {
       <div className="flex justify-between items-center">
         <div className="flex justify-between my-2">
         <Tooltip title="Add Brand">
-          <Button type="primary" onClick={()=>setOpen(true)} style={{background: "#e74c3c"}}>Add Brand</Button>
+          <Button type="primary" onClick={()=>setOpen(true)}>Add Brand</Button>
         </Tooltip>
         </div>
       </div>
       <Table
         data={data}
         columns={columns}
-        pagination={{ pageSize: 5 }}
-        // onChange={handleTableChange}
+        pagination={{ pageSize: 5 }} onChange={function (): void {
+          throw new Error("Function not implemented.");
+        } }        // onChange={handleTableChange}
       />
       
     </div>
