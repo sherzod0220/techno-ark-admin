@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Input, Modal,notification } from "antd";
+import { Button, Form, Input, Modal } from "antd";
 const { TextArea } = Input;
 import { ProductDetailService } from "@service";
+import Notification from "@notification";
 interface PropType {
   open: boolean,
   handleCancel:()=> void,
@@ -47,15 +48,16 @@ const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) 
             const response = await ProductDetailService.update(detail.id,datas);
             getProduct()
             if (response?.status === 201) {
-                notification.success({
-                    message: "Brand created successfully!",
+                Notification({
+                    type:"success",
+                    title: "Brand created successfully!",
                   });
               form.resetFields();
             }
       } catch (error: any) {
-        notification.error({
-          message: "Failed to update brand",
-          description: error?.response?.data?.message || "Something went wrong",
+        Notification({
+            type:"error",
+          title: `Failed to update brand! ${error?.response?.data?.message}, Something went wrong`,
         });
       } finally {
         setLoading(false);
@@ -72,15 +74,16 @@ const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) 
             const response = await ProductDetailService.create(datas);
             getProduct()
             if (response?.status === 201) {
-                notification.success({
-                    message: "Brand created successfully!",
+                Notification({
+                    type:"success",
+                    title: "Brand created successfully!",
                   });
               form.resetFields();
             }
         } catch (error: any) {
-              notification.error({
-              message: "Failed to add brand",
-              description: error?.response?.data?.message || "Something went wrong",
+              Notification({
+                type:"error",
+                title: `Failed to add brand! ${error?.response?.data?.message},Something went wrong`,
             });
         }
     }

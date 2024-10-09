@@ -5,19 +5,14 @@ import { ProductDetailActions } from "@modals";
 import { Button, Tooltip } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { GlobalDelete } from "@components"
-import { notification } from "antd";
+import Notification from "@notification";
 import { ProductDetailService } from "@service";
 
 const Index = () => {
-    const {id}: any = useParams()
-    // console.log(id, "useparams");
-    
+    const {id}: any = useParams()    
     const [product,setProduct]: any = useState([])
     const [detail, setDetail]:any = useState([])
-    const [open,setOpen] = useState(false)
-    const [category,setCategory] = useState({})
-    console.log(category);
-    
+    const [open,setOpen] = useState(false)   
     const getProduct = async () => {
         try {
           const response = await ProductsService.get_by_id(id);
@@ -32,15 +27,11 @@ const Index = () => {
     useEffect(() => {
         getProduct();
     }, []);
-    // console.log(product,"product");
-    // console.log(detail,"detail");
     
-    const openModal =(item:any)=>{  
-        setCategory(item)
+    const openModal =()=>{  
         setOpen(true)
       }
       const handleCancel =()=>{
-        setCategory({})
         setOpen(false)
     }
 
@@ -50,16 +41,15 @@ const Index = () => {
           const response = await ProductDetailService.delete(id);
           getProduct()
           if (response?.status === 200) {
-            notification.success({
-              message: "Category deleted successfully",
+            Notification({
+              type:"success",  
+              title: "Category deleted successfully",
             });
-            // setIsModalVisible(false);
-            // onSuccess();
           }
         } catch (error: any) {
-          notification.error({
-            message: "Failed to delete category",
-            description: error?.response?.data?.message || "Something went wrong",
+          Notification({
+            type:"error",
+            title: `Failed to delete category! ${error?.response?.data?.message}, Something went wrong`,
           });
         }
         // setLoading(false);
