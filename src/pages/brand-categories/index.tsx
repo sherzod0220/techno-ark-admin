@@ -82,6 +82,7 @@ const Index = () => {
     // setLoading(true);
     try {
       const response = await BrandCategoryService.delete(id);
+      getData()
       if (response?.status === 200) {
         Notification({
           type:"success",

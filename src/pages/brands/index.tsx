@@ -83,6 +83,7 @@ const Index = () => {
     // setLoading(true);
     try {
       const response = await BrandService.delete(id);
+      getData()
       if (response?.status === 200) {
         Notification({
           type:"success",

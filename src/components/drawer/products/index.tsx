@@ -11,9 +11,10 @@ const { Option } = Select;
 interface PropType {
     open: boolean,
     handleCancel:()=> void,
-    category: any
+    category: any,
+    getProducts:any
   }
-const Index = ({open,handleCancel,category}:PropType) => {
+const Index = ({open,handleCancel,category,getProducts}:PropType) => {
 console.log(category);
 const [categories, setCategories] = useState([]);
 const [brands, setBrands] = useState([]);
@@ -84,13 +85,24 @@ const [image, setImage] = useState([]);
     getBrandCategory();
   }, [brandid]);
 
+  useEffect(() => {
+    if (category.name) {
+      form.setFieldsValue({
+        name: category.name,
+        price: category.price,
+        category_id: Number(category.category_id),
+        brand_category_id: Number(category.brand_category_id),
+        brand_id: Number(category.brand_id)
+      });
+    } else {
+      form.resetFields();
+    }
+  }, [category, form]);
   const handleImageChange = (event: any) => {
     setImage(event.target.files[0]);
   };
-
   const handleSubmit = async(values: any) => {
     // setBootonLoding(true);
-    
     if (category.id) {
       // Update the category
       try {
@@ -102,10 +114,10 @@ const [image, setImage] = useState([]);
               brand_id: Number(values.brand_id)
             }
             const response = await ProductsService.update(category.id,datas);
+            getProducts()
             // console.log(category,"kktt");
-            console.log(values,"this is values");
-            console.log(values.category_id,"vll");
-            
+            // console.log(values,"this is values");
+            // console.log(values.category_id,"vll");
             if (response?.status === 201) {
                 notification.success({
                     message: "Brand created successfully!",
@@ -132,12 +144,12 @@ const [image, setImage] = useState([]);
             console.log(values,"vll");
             
             const response = await ProductsService.create(formData);
+            getProducts()
             if (response?.status === 201) {
                 notification.success({
                     message: "Brand created successfully!",
                   });
               form.resetFields();
-            //   getProducts()
             }
         } catch (error: any) {
               notification.error({
@@ -240,7 +252,7 @@ const [image, setImage] = useState([]);
               </Select>
             </Form.Item>
             {
-              category.id ?
+              !category.id ?
             <Form.Item
               label="Product image"
               name="files"

@@ -5,9 +5,8 @@ import { Table, Search } from "@components";
 import { Button, Space, Tooltip } from "antd";
 import { EyeOutlined ,EditOutlined} from "@ant-design/icons";
 import { GlobalDelete } from "@components"
-import { notification } from "antd";
-// import { TestDrawer } from "@modals";
 import { ProductsActions } from "@drawers";
+import Notification from "@notification";
 
 const Index = () => {
   const [data, setData] = useState([]);
@@ -83,9 +82,7 @@ const Index = () => {
     setCategory({})
     setOpen(false);
   };
-
   const moveSingle = (id: number) => {
-    // console.log(id);
     navigate(`/main/products/${id}`);
   };
 
@@ -96,16 +93,17 @@ const Index = () => {
       const response = await ProductsService.delete(id);
       getProducts()
       if (response?.status === 200) {
-        notification.success({
-          message: "Category deleted successfully",
+        Notification({
+          type:"success",
+          title: "Category deleted successfully",
         });
         // setIsModalVisible(false);
         // onSuccess();
       }
     } catch (error: any) {
-      notification.error({
-        message: "Failed to delete category",
-        description: error?.response?.data?.message || "Something went wrong",
+      Notification({
+        type:"error",
+        title: `Failed to delete category! ${error?.response?.data?.message},Something went wrong`,
       });
     }
     // setLoading(false);
