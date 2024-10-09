@@ -6,14 +6,14 @@ interface PropType {
   open: boolean,
   handleCancel:()=> void,
   product: any,
-  detail: any
+  detail: any,
+  getProduct:any,
 }
-const BrandModal = ({ open, handleCancel, product,detail }:PropType) => {
-
+const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) => {    
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
-  console.log(product, 'product')
-  console.log(detail,"detail");
+//   console.log(product, 'product')
+//   console.log(detail,"detail");
   
   useEffect(() => {
     if (product.name) {
@@ -45,6 +45,7 @@ const BrandModal = ({ open, handleCancel, product,detail }:PropType) => {
           product_id: Number(product.id)
         }
             const response = await ProductDetailService.update(detail.id,datas);
+            getProduct()
             if (response?.status === 201) {
                 notification.success({
                     message: "Brand created successfully!",
@@ -69,6 +70,7 @@ const BrandModal = ({ open, handleCancel, product,detail }:PropType) => {
               product_id: Number(product.id)
             }
             const response = await ProductDetailService.create(datas);
+            getProduct()
             if (response?.status === 201) {
                 notification.success({
                     message: "Brand created successfully!",
@@ -138,7 +140,7 @@ const BrandModal = ({ open, handleCancel, product,detail }:PropType) => {
           <Form.Item>
             <Button
               size="large"
-              style={{ width: "100%",background:"#e74c3c" }}
+              style={{ width: "100%" }}
               type="primary"
               htmlType="submit"
               loading={loading}

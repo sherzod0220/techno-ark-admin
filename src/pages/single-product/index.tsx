@@ -10,7 +10,7 @@ import { ProductDetailService } from "@service";
 
 const Index = () => {
     const {id}: any = useParams()
-    console.log(id, "useparams");
+    // console.log(id, "useparams");
     
     const [product,setProduct]: any = useState([])
     const [detail, setDetail]:any = useState([])
@@ -32,8 +32,8 @@ const Index = () => {
     useEffect(() => {
         getProduct();
     }, []);
-    console.log(product,"product");
-    console.log(detail,"detail");
+    // console.log(product,"product");
+    // console.log(detail,"detail");
     
     const openModal =(item:any)=>{  
         setCategory(item)
@@ -48,6 +48,7 @@ const Index = () => {
         // setLoading(true);
         try {
           const response = await ProductDetailService.delete(id);
+          getProduct()
           if (response?.status === 200) {
             notification.success({
               message: "Category deleted successfully",
@@ -66,24 +67,23 @@ const Index = () => {
     
   return (
     <>
-            <ProductDetailActions open={open} handleCancel={handleCancel} detail={detail} product={product}/>
+            <ProductDetailActions open={open} handleCancel={handleCancel} detail={detail} product={product} getProduct={getProduct}/>
         {
             detail === null ? (
                 <div className="flex flex-col gap-[15px]">
                     <div className="flex items-center gap-[20px]">
                         <h2 className="text-[24px] font-semibold">Product name:</h2>
-                        <p className="text-[24px] font-semibold text-[#e74c3c]">{product.name}</p>
+                        <p className="text-[24px] font-semibold text-[#d55200]">{product.name}</p>
                     </div>
 
                     <div className="flex items-center gap-[20px]">
                         <h2 className="text-[24px] font-semibold">Product Price:</h2>
-                        <p className="text-[24px] font-semibold text-[#e74c3c]">{product.price}</p>
+                        <p className="text-[24px] font-semibold text-[#d55200]">{product.price}</p>
                     </div>
                     <div className="flex items-center gap-[20px]">
                         <h2 className="text-[24px] font-semibold">Product detail</h2>
-                        {/* <button className="bg-[#e74c3c] text-[white] px-[30px] text-[20px] py-[6px] rounded-[10px]">Add product details</button> */}
                         <Tooltip title="Add Brand">
-                            <Button type="primary" onClick={()=>setOpen(true)} style={{background: "#e74c3c"}}>Add Product Detail</Button>
+                            <Button type="primary" onClick={()=>setOpen(true)}>Add Product Detail</Button>
                         </Tooltip>
                     </div>
                 </div>
@@ -134,7 +134,7 @@ const Index = () => {
                                 id={detail.id}
                                 onConfirm={deleteData}
                                 onCancel={() => console.log('Cancelled')}
-                                title={"Delete this Category ?"}
+                                title={"Delete this Product detail ?"}
                              />
                         </Tooltip>
                         </div>
