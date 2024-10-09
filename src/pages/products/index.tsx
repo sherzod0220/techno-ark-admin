@@ -3,18 +3,20 @@ import { useEffect, useState } from "react";
 import { ProductsService } from "@service";
 import { Table, Search } from "@components";
 import { Button, Space, Tooltip } from "antd";
-import { EyeOutlined } from "@ant-design/icons";
+import { EyeOutlined ,EditOutlined} from "@ant-design/icons";
 import { GlobalDelete } from "@components"
 import { notification } from "antd";
 // import { TestDrawer } from "@modals";
+import { ProductsActions } from "@drawers";
 
 const Index = () => {
   const [data, setData] = useState([]);
-  // const [open,setOpen] = useState(false)
+  const [open,setOpen] = useState(false)
   const [total, setTotal] = useState(0); // To store the total number of items
   const location = useLocation()
   const navigate = useNavigate()
   const val = new URLSearchParams(location.search)
+  const [category,setCategory] = useState({})
   // const [product,setProduct] = useState({})
 
   const [params, setParams] = useState({
@@ -72,6 +74,16 @@ const Index = () => {
        navigate(`?${searchParams}`)
   };
   
+  const openModal = (item:any) => {
+    setCategory(item)
+    setOpen(true);
+  };
+
+  const handleCancel = () => {
+    setCategory({})
+    setOpen(false);
+  };
+
   const moveSingle = (id: number) => {
     // console.log(id);
     navigate(`/main/products/${id}`);
@@ -124,6 +136,12 @@ const Index = () => {
               data={data}
               // onClick={()=>openModal(record)}
             />     */}
+             <Button
+              type="default"
+              icon={<EditOutlined />}
+              onClick={()=>openModal(record)}
+              style={{width:"45px", color:"#d55200", borderColor:"#d55200"}}
+            />
           </Tooltip>
           <Tooltip title="Delete">
             <GlobalDelete
@@ -147,14 +165,15 @@ const Index = () => {
   ];
   return (
     <div className="flex flex-col gap-[20px]">
+      <ProductsActions open={open} handleCancel={handleCancel} category={category}/>
       <div className="flex justify-between items-center">
         <span className="w-[300px]">
             <Search params={params} setParams={setParams}/>
         </span>
         <div className="flex justify-between my-2">
-        <Tooltip title="Add prouct">
-          {/* <TestDrawer title="post" getProducts={getProducts}/> */}
-        </Tooltip>
+          <Tooltip title="Add Product">
+            <Button type="primary" onClick={()=>setOpen(true)} style={{background: "#d55200"}}>Add Product</Button>
+          </Tooltip>
         </div>
         
       </div>

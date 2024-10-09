@@ -10,18 +10,6 @@ const Index = () => {
   const [data, setData] = useState([]);
   const [open,setOpen] = useState(false)
   const [category,setCategory] = useState({})
-  // const [categories,setCategories] = useState([])
-  // const [total, setTotal] = useState(0); // To store the total number of items
-  // const location = useLocation()
-  // const navigate = useNavigate()
-  // const val = new URLSearchParams(location.search)
-  
-  // const [params, setParams] = useState({
-  //   search: val.get('search') ||'',
-  //   page: 1,
-  //   limit: 10,
-  // });
-
   
   const getData = async () => {
     try {
@@ -34,46 +22,13 @@ const Index = () => {
       console.log(err);
     }
   };
-
   useEffect(() => {
     getData();
   }, []); // Fetch data whenever params change
-
-  // useEffect(()=>{
-  //   // const params = new URLSearchParams(location.search)
-  //   // const page = params.get("page")
-  //   // const limit = params.get('limit')
-  //   // const input_val = params.get("search")
-  //   // const find = input_val ? input_val : ""
-  //   // const pageNumber = page ? parseInt(page) : 1
-  //   // const limitPage = limit ? parseInt(limit) : 10
-  //   // setParams(prevParams =>({
-  //   //   ...prevParams,
-  //   //   page: pageNumber,
-  //   //   // search: find,
-  //   //   // limit: limitPage
-  //   // }))
-  // },[location.search])
-  // Handle table pagination changes
-  // const handleTableChange = (pagination: any) => {
-  //   const { current = 1, pageSize = 10 } = pagination;
-  //   // Update pagination parameters and set them in the URL query params
-  //   // setParams((prev) => ({
-  //   //   ...prev,
-  //   //   page: current,
-  //   //   limit: pageSize,
-  //   // }));
-  //   // const searchParams = new URLSearchParams(location.search)
-  //   //    searchParams.set("page", `${current}`)
-  //   //    searchParams.set("limit", `${pageSize}`)
-  //   //    navigate(`?${searchParams}`)
-  // };
-  
   const handleCancel =()=>{
     setCategory({})
     setOpen(false)
   }
-
   const deleteData = async (id: number) => {
     // setLoading(true);
     try {
@@ -93,9 +48,6 @@ const Index = () => {
     }
     // setLoading(false);
   };
-  
-  
-
   const columns: any = [
     { 
       title: "№",
@@ -136,14 +88,11 @@ const Index = () => {
       ),
     }
   ];
-
-  
-  
   return (
     <div className="flex flex-col gap-[20px]">
       <AdsActions open={open} handleCancel={handleCancel} category={category} getData={getData}/>
       <div className="flex justify-between items-center">
-        <div className="flex justify-between my-2">
+        <div className="flex justify-end w-full my-2">
         <Tooltip title="Add Brand">
           <Button type="primary" onClick={()=>setOpen(true)}>Add Brand</Button>
         </Tooltip>
@@ -156,7 +105,6 @@ const Index = () => {
           throw new Error("Function not implemented.");
         } }        // onChange={handleTableChange}
       />
-      
     </div>
   )
 }

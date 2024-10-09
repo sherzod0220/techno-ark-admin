@@ -12,6 +12,7 @@
       "@token-service": ["./src/utils/token-service"],
       "@components": ["./src/components"],
       "@modals": ["./src/components/modal"],
+      "@drawers": ["./src/components/drawer"],
       "@notification": ["./src/utils/notification"],
     },
 

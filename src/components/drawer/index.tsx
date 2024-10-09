@@ -1,3 +1,3 @@
-import Products from './products'
+import ProductsActions from './products'
 
-export {Products}
+export {ProductsActions}
