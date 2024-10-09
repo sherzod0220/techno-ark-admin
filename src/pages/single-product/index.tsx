@@ -1,7 +1,7 @@
 import { ProductsService } from "@service";
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { ProductDetailAddUpdate } from "@modals";
+import { ProductDetailActions } from "@modals";
 import { Button, Tooltip } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { GlobalDelete } from "@components"
@@ -66,7 +66,7 @@ const Index = () => {
     
   return (
     <>
-            <ProductDetailAddUpdate open={open} handleCancel={handleCancel} detail={detail} product={product}/>
+            <ProductDetailActions open={open} handleCancel={handleCancel} detail={detail} product={product}/>
         {
             detail === null ? (
                 <div className="flex flex-col gap-[15px]">
