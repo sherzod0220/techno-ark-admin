@@ -122,7 +122,7 @@ const BrandModal = ({ open, handleCancel, stock,getData }:PropType) => {
         }            
             
             const response = await StockService.update(stock.id,datas);
-                        
+            getData()          
             if (response?.status === 200) {
                 Notification({
                     type:"success",
@@ -149,9 +149,8 @@ const BrandModal = ({ open, handleCancel, stock,getData }:PropType) => {
             
             const response = await StockService.create(datas);
             console.log(datas,"datats");
-            
+            getData()
             if (response?.status === 201) {
-                getData()
                 Notification({
                     type:"success",
                     title: "Brand created successfully!",
