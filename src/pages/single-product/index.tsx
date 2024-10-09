@@ -92,19 +92,19 @@ const Index = () => {
                             <h2 className="text-[20px] font-semibold">Description:</h2>
                             <p className="text-[17px] font-medium text-[gray]">{detail.description}</p>
                         </div>
-                        <div className="w-[100%] flex justify-between items-center py-[10px] border-b-[2px] border-b-[lightgray]">
+                        <div className="w-[100%] flex justify-between items-center py-[10px] border-b-[1px] border-b-[lightgray]">
                         <h2 className="text-[20px] font-semibold">Product color</h2>
                             <p className="text-[17px] font-medium">{detail.colors}</p>
                         </div>
-                        <div className="w-[100%] flex justify-between items-center py-[10px] border-b-[2px] border-b-[lightgray]">
+                        <div className="w-[100%] flex justify-between items-center py-[10px] border-b-[1px] border-b-[lightgray]">
                             <h2 className="text-[20px] font-semibold">Prduict quantity</h2>
                             <p className="text-[17px] font-medium">{detail.quantity}</p>
                         </div>
-                        <div className="w-[100%] flex justify-between items-center py-[10px] border-b-[2px] border-b-[lightgray]">
+                        <div className="w-[100%] flex justify-between items-center py-[10px] border-b-[1px] border-b-[lightgray]">
                             <h2 className="text-[20px] font-semibold">Product discount</h2>
                             <p className="text-[17px] font-medium">{detail.discount}%</p>
                         </div>
-                        <div className="w-[100%] flex justify-between items-center py-[10px] border-b-[2px] border-b-[lightgray]">
+                        <div className="w-[100%] flex justify-between items-center py-[10px] border-b-[1px] border-b-[lightgray]">
                             <h2 className="text-[20px] font-semibold">Product price</h2>
                             <span className="flex items-center gap-[10px]">
                                 <p className="text-[gray]"><del>{product.price}$</del></p>
@@ -117,6 +117,7 @@ const Index = () => {
                                 type="default"
                                 icon={<EditOutlined />}
                                 onClick={openModal}
+                                style={{width:"45px", color:"#d55200", borderColor:"#d55200"}}
                                 />
                         </Tooltip>
                         <Tooltip title="Delete">

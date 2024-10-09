@@ -50,14 +50,14 @@ const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) 
             if (response?.status === 201) {
                 Notification({
                     type:"success",
-                    title: "Brand created successfully!",
+                    title: "Product detail updated successfully!",
                   });
               form.resetFields();
             }
       } catch (error: any) {
         Notification({
             type:"error",
-          title: `Failed to update brand! ${error?.response?.data?.message}, Something went wrong`,
+            title: `Failed to update product detail! ${error?.response?.data?.message}, Something went wrong`,
         });
       } finally {
         setLoading(false);
@@ -76,7 +76,7 @@ const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) 
             if (response?.status === 201) {
                 Notification({
                     type:"success",
-                    title: "Brand created successfully!",
+                    title: "Product Detail added successfully!",
                   });
               form.resetFields();
             }
@@ -95,7 +95,7 @@ const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) 
     <>
       <Modal
         open={open}
-        title={detail?.id ? "Edit brand" : "Add product detail"}
+        title={detail?.id ? "Edit prduct detail" : "Add product detail"}
         onCancel={handleCancel}
         footer={false}
       >
@@ -137,9 +137,6 @@ const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) 
           >
             <TextArea rows={4} />
           </Form.Item>
-
-          
-
           <Form.Item>
             <Button
               size="large"
