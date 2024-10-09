@@ -4,7 +4,8 @@ import SubCategoryService from './sub-category'
 import BrandService from './brands'
 import BrandCategoryService from './brand-category'
 import ProductsService from './products'
+import ProductDetailService from './product-detail'
 import StockService from './stock'
 import AdminService from './admin'
 import AdsService from './ads'
-export {auth,CategoryService,SubCategoryService,BrandService,BrandCategoryService,ProductsService,StockService,AdminService,AdsService }
+export {auth,CategoryService,SubCategoryService,BrandService,BrandCategoryService,ProductsService,ProductDetailService,StockService,AdminService,AdsService }

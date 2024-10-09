@@ -97,6 +97,22 @@ export interface Products {
     get_product_by_id: ( id:number,params: IParams)=>any
 }
 
+// ====== Products Details======
+interface IDetailCreate {
+    quantity: number;
+    colors: any | string;
+    description: any | string;
+    discount: number;
+    product_id: number
+}
+
+export interface productDetail {
+    // get: (params: IParams)=> any
+    create: (data:IDetailCreate) => Promise<any>;
+    update: (id: string | number, data: IDetailCreate) => Promise<any>;
+    delete: (id: string | number) => Promise<any>;
+}
+
 // ========= Stock =========
 interface StockCreate {
     brand_id?: any | number

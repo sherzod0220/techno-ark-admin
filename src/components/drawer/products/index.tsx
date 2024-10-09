@@ -12,13 +12,13 @@ interface PropType {
 const Index = ({open,handleCancel,category}:PropType) => {
 //   const [open, setOpen] = useState(false);
 
+
+console.log(category);
+
   
 
   return (
     <>
-      {/* <Button type="primary" onClick={showDrawer}>
-        New account
-      </Button> */}
       <Drawer
         title="Create a new account"
         width={720}
@@ -29,14 +29,6 @@ const Index = ({open,handleCancel,category}:PropType) => {
             paddingBottom: 80,
           },
         }}
-        // extra={
-        //   <Space>
-        //     <Button onClick={onClose}>Cancel</Button>
-        //     <Button onClick={onClose} type="primary">
-        //       Submit
-        //     </Button>
-        //   </Space>
-        // }
       >
         <Form layout="vertical" hideRequiredMark>
           <Row gutter={16}>
@@ -119,7 +111,7 @@ const Index = ({open,handleCancel,category}:PropType) => {
           <Form.Item>
             <Button
               size="large"
-              style={{ width: "100%",background:"#e74c3c" }}
+              style={{ width: "100%" }}
               type="primary"
               htmlType="submit"
             //   loading={loading}
