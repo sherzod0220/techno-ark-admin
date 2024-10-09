@@ -94,6 +94,7 @@ const Index = () => {
     
     try {
       const response = await ProductsService.delete(id);
+      getProducts()
       if (response?.status === 200) {
         notification.success({
           message: "Category deleted successfully",
@@ -165,7 +166,7 @@ const Index = () => {
   ];
   return (
     <div className="flex flex-col gap-[20px]">
-      <ProductsActions open={open} handleCancel={handleCancel} category={category}/>
+      <ProductsActions open={open} handleCancel={handleCancel} category={category} getProducts={getProducts}/>
       <div className="flex justify-between items-center">
         <span className="w-[300px]">
             <Search params={params} setParams={setParams}/>
