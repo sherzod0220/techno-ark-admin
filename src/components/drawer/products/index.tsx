@@ -163,7 +163,7 @@ const [image, setImage] = useState([]);
   return (
     <>
       <Drawer
-        title="Create a new account"
+        title={!product.id ?  "Add a new Product" : "Update product"}
         width={720}
         onClose={handleCancel}
         open={open}
