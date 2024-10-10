@@ -85,10 +85,10 @@ const Index = () => {
                 </div>
                 <div className="w-[50%] flex justify-center pt-[100px]">
                     <div className="flex flex-col gap-[20px] w-[100%] px-[100px]">
-                        <div className="w-[100%] flex justify-center py-[10px] px-[20px] border-b-[2px] border-b-[gray]">
+                        <div className="w-[100%] flex justify-center pb-[30px] px-[20px] ">
                             <h1 className="text-[25px] font-semibold">{product.name}</h1>
                         </div>
-                        <div className="w-[100%] flex gap-[50px] justify-between items-center py-[5px] border-b-[2px] border-b-[lightgray]">
+                        <div className="w-[100%] flex gap-[50px] justify-between items-center py-[5px] border-b-[1px] border-b-[lightgray]">
                             <h2 className="text-[20px] font-semibold">Description:</h2>
                             <p className="text-[17px] font-medium text-[gray]">{detail.description}</p>
                         </div>

@@ -40,10 +40,10 @@ const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) 
         }
             const response = await ProductDetailService.update(detail.id,datas);
             getProduct()
-            if (response?.status === 201) {
+            if (response?.status === 200) {
                 Notification({
                     type:"success",
-                    title: "Product detail updated successfully!",
+                    title: "Product detail successfully updated!",
                   });
               form.resetFields();
             }
@@ -138,7 +138,7 @@ const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) 
               htmlType="submit"
               loading={loading}
             >
-              {!product.id ? "Update" : "Add"}
+              {detail?.id ? "Update" : "Add"}
             </Button>
           </Form.Item>
         </Form>
