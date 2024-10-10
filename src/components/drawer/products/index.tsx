@@ -2,8 +2,8 @@
 // import { PlusOutlined } from '@ant-design/icons';
 import { Button,Upload, Drawer, Form, Input, Select } from 'antd';
 import { UploadOutlined } from "@ant-design/icons";
-import { notification } from "antd";
 import { CategoryService, BrandService, BrandCategoryService, ProductsService } from "@service";
+import Notification from '@notification';
 import { useEffect } from 'react';
 import { useState } from 'react';
 const { Option } = Select;
@@ -116,15 +116,16 @@ const [image, setImage] = useState([]);
             const response = await ProductsService.update(product.id,datas);
             getProducts()
             if (response?.status === 201) {
-                notification.success({
-                    message: "Brand created successfully!",
+                Notification({
+                    type:"success",
+                    title: "Product successfully updated!",
                   });
               form.resetFields();
             }
       } catch (error: any) {
-        notification.error({
-          message: "Failed to update brand",
-          description: error?.response?.data?.message || "Something went wrong",
+        Notification({
+            type:"error",
+            title: `Failed to update brand! ${error?.response?.data?.message}, Something went wrong`,
         });
       } finally {
         // setBootonLoding(false);
@@ -143,15 +144,16 @@ const [image, setImage] = useState([]);
             const response = await ProductsService.create(formData);
             getProducts()
             if (response?.status === 201) {
-                notification.success({
-                    message: "Brand created successfully!",
+                Notification({
+                    type:"success",
+                    title: "Product successfully added!",
                   });
               form.resetFields();
             }
         } catch (error: any) {
-              notification.error({
-              message: "Failed to add brand",
-              description: error?.response?.data?.message || "Something went wrong",
+              Notification({
+                type:"error",
+                title: `Failed to add Product!  ${error?.response?.data?.message}, Something went wrong`,
             });
         }
     }
