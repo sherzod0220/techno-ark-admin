@@ -2,6 +2,7 @@ import { AdminService } from '@service'
 import { useEffect, useState } from "react";
 import { Button,Tooltip } from 'antd';
 import { getData } from '@token-service'
+import { EditOutlined,UserAddOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
 import { GlobalDelete } from "@components"
 import adminImg from '../../assets/admin.jpg'
@@ -93,14 +94,26 @@ const deleteData = async (id: number) => {
           </div>
           <div className='flex gap-[20px]'>
             {/* <AdminUpdate open={open} handleCancel={handleCancel}/> */}
-            <Button loading={loading} size='large' onClick={moveAuth} type='primary' className='px-[30px] py-[5px] rounded-[6px] bg-[#5ec35e]'>Create New Accout</Button>
+            <Tooltip title="Add New Account">
+            <Button 
+              loading={loading} 
+              onClick={moveAuth} 
+              type='primary' 
+              className='bg-[#5ec35e]'
+              style={{width:"45px"}}
+              icon={<UserAddOutlined />}
+            />
+            </Tooltip>
+            <Tooltip title="Update account">
             <Button 
               // onClick={()=>openModal(record)}
-              size='large' 
               type='primary' 
-              className='px-[30px] rounded-[6px] bg-[orange]'>update account</Button>
-            {/* <Button size='large' color='danger' className='px-[30px] py-[5px] rounded-[6px] bg-[crimson] text-[white]'>Delete account</Button> */}
-            <Tooltip title="Delete">
+              icon={<EditOutlined />}
+              style={{width:"45px"}}
+              className='px-[30px] rounded-[6px] bg-[orange]'
+            />
+            </Tooltip>  
+            <Tooltip title="Delete Account">
             <GlobalDelete
               id={id}
               onConfirm={deleteData}

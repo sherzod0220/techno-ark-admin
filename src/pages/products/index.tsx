@@ -139,7 +139,7 @@ const Index = () => {
               id={record.id}
               onConfirm={deleteData}
               onCancel={() => console.log('Cancelled')}
-              title={"Delete this Product ?"}
+              title={"Delete this Product?"}
             />
           </Tooltip >
           <Tooltip title="See more about this product">

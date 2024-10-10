@@ -43,14 +43,14 @@ const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
         if (response?.status === 201) {
             Notification({
                 type: "success",
-                title: "Ads created successfully!",
+                title: "Ad successfully added!",
               });
           form.resetFields();
         }
     } catch (error: any) {
           Notification({
             type: "error",
-          title: `Failed to add ads! ${error?.response?.data?.message}, Something went wrong`,
+          title: `Failed to add ad! ${error?.response?.data?.message}, Something went wrong`,
         });
     }
     setLoading(false);
@@ -61,7 +61,7 @@ const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
     <>
       <Modal
         open={open}
-        title="Create Ads"
+        title="Create Ad"
         onCancel={handleCancel}
         footer={false}
       >

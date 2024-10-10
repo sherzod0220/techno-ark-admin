@@ -126,14 +126,14 @@ const BrandModal = ({ open, handleCancel, stock,getData }:PropType) => {
             if (response?.status === 200) {
                 Notification({
                     type:"success",
-                    title: "Brand created successfully!",
+                    title: "Product successfully updated!",
                   });
               form.resetFields();
             }
       } catch (error: any) {
         Notification({
           type:"error",
-          title: `Failed to update brand ${error?.response?.data?.message}, Something went wrong`,
+          title: `Failed to update prodcut${error?.response?.data?.message}, Something went wrong`,
         });
       } finally {
         setLoading(false);
@@ -172,7 +172,7 @@ const BrandModal = ({ open, handleCancel, stock,getData }:PropType) => {
     <>
       <Modal
         open={open}
-        title={stock.id ? "Edit brand" : "Create Product"}
+        title={stock.id ? "Uptade Product" : "Add Product"}
         onCancel={handleCancel}
         footer={false}
       >

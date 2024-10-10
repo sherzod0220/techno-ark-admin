@@ -144,7 +144,7 @@ const Index = () => {
               id={record.id}
               onConfirm={deleteData}
               onCancel={() => console.log('Cancelled')}
-              title={"Delete this Brand Category ?"}
+              title={"Delete this Brand Brand Category ?"}
             />
           </Tooltip>
         </Space>

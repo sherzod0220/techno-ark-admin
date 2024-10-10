@@ -37,13 +37,13 @@ const Index = () => {
         getData()
         Notification({
           type:"success",
-          title: "Category deleted successfully",
+          title: "Ad successfully deleted",
         });
       }
     } catch (error: any) {
       Notification({
         type: "error",
-        title: `Failed to delete category! ${error?.response?.data?.message}, Something went wrong`,
+        title: `Failed to delete ad! ${error?.response?.data?.message}, Something went wrong`,
       });
     }
     // setLoading(false);
@@ -81,7 +81,7 @@ const Index = () => {
               id={record.id}
               onConfirm={deleteData}
               onCancel={() => console.log('Cancelled')}
-              title={"Delete this Category ?"}
+              title={"Delete this Ad ?"}
             />
           </Tooltip>
         </Space>
