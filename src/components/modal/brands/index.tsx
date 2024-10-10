@@ -46,7 +46,7 @@ const BrandModal = ({ open, handleCancel, brand,categories,getData }:PropType) =
             getData()
             if (response?.status === 200) {
                 Notification({
-                    title: "Brand created successfully!",
+                    title: "Brand successfully updated!",
                     type: "success"
                   });
               form.resetFields();

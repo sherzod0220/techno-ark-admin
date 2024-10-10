@@ -86,7 +86,7 @@ const Index = () => {
       if (response?.status === 200) {
         Notification({
           type:"success",
-          title: "Brand Category deleted successfully",
+          title: "Brand Category successfully deleted!",
         });
         // setIsModalVisible(false);
         // onSuccess();
