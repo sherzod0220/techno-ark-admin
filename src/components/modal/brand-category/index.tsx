@@ -34,7 +34,7 @@ const BrandModal = ({ open, handleCancel, brandCategory,categories,getData }:Pro
             if (response?.status === 200) {
                 Notification({
                     type:"success",
-                    title: "Brand created successfully!",
+                    title: "Brand Category successfully updated!",
                   });
               form.resetFields();
             }
@@ -52,7 +52,7 @@ const BrandModal = ({ open, handleCancel, brandCategory,categories,getData }:Pro
             getData()
             if (response?.status === 201) {
                 Notification({
-                    title: "Brand created successfully!",
+                    title: "Brand Category successfully created!",
                     type:"success"
                   });
               form.resetFields();
@@ -60,7 +60,7 @@ const BrandModal = ({ open, handleCancel, brandCategory,categories,getData }:Pro
         } catch (error: any) {
               Notification({
               type:"error",
-              title:`Failed to add brand ${error?.response?.data?.message} Something went wrong`,
+              title:`Failed to add brand category ${error?.response?.data?.message} Something went wrong`,
             });
         }
     }
@@ -73,7 +73,7 @@ const BrandModal = ({ open, handleCancel, brandCategory,categories,getData }:Pro
       <Modal
         open={open}
 
-        title={brandCategory.id ? "Edit brand" : "Create brand"}
+        title={brandCategory.id ? "Edit Brand Category" : "Create Brand Category"}
         onCancel={handleCancel}
         footer={false}
       >
