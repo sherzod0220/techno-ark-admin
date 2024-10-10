@@ -115,7 +115,7 @@ const [image, setImage] = useState([]);
             }
             const response = await ProductsService.update(product.id,datas);
             getProducts()
-            if (response?.status === 201) {
+            if (response?.status === 200) {
                 Notification({
                     type:"success",
                     title: "Product successfully updated!",

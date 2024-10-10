@@ -93,7 +93,7 @@ const Index = () => {
       if (response?.status === 200) {
         Notification({
           type:"success",
-          title: "Product deleted successfully",
+          title: "Product successfully deleted!",
         });
         // setIsModalVisible(false);
         // onSuccess();
@@ -141,14 +141,16 @@ const Index = () => {
               onCancel={() => console.log('Cancelled')}
               title={"Delete this Product ?"}
             />
-          </Tooltip>
+          </Tooltip >
+          <Tooltip title="See more about this product">
             <Button
-              className="border-[1px] border-[#e74c3c] text-[#e74c3c] p-[10px]"
+              className="border-[1px]"
               // type="default"
               icon={<EyeOutlined />}
               onClick={() => moveSingle(record.id)}
-              style={{width:"45px", color:"#d55200", borderColor:"#d55200"}}
+              style={{width:"45px", color:"green", borderColor:"green"}}
             />
+          </Tooltip>
         </Space>
       ),
     }
