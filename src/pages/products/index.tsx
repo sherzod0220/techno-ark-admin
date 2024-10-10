@@ -129,12 +129,6 @@ const Index = () => {
           
           {/* Adit draewe */}
           <Tooltip title="Edit" >
-            {/* <TestDrawer 
-              title="edit" 
-              id={record.id}
-              data={data}
-              // onClick={()=>openModal(record)}
-            />     */}
              <Button
               type="default"
               icon={<EditOutlined />}
