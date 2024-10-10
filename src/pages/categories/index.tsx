@@ -88,8 +88,6 @@ const Index = () => {
           title: "Category deleted successfully",
           type: "success"
         });
-        // setIsModalVisible(false);
-        // onSuccess();
       }
     } catch (error: any) {
       Notification({

@@ -56,7 +56,7 @@ const Index = () => {
     }))
   },[location.search])
   // Handle table pagination changes
-  const handleTableChange = (pagination: any) => {
+  const handleTableChange = (pagination: number | any) => {
     const { current = 1, pageSize = 10 } = pagination;
     // Update pagination parameters and set them in the URL query params
     setParams((prev) => ({
@@ -81,6 +81,7 @@ const Index = () => {
     // setLoading(true);
     try {
       const response = await SubCategoryService.delete(id);
+      getData()
       if (response?.status === 200) {
         Notification({
           title: "Category deleted successfully",

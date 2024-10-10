@@ -11,7 +11,7 @@ interface globaldelete {
 const GlobalDelete = ({onConfirm, onCancel, id ,title}:globaldelete) => (
   <Popconfirm
     title={title}
-    okText="ok"
+    okText="confirm"
     cancelText="Cancel"
     onConfirm={() => onConfirm(id)}  
     onCancel={onCancel}

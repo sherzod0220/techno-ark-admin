@@ -7,7 +7,7 @@ interface PropType {
   open: boolean,
   handleCancel:()=> void,
   subcategory: any,
-  getData: any
+  getData: ()=> void
 }
 const UpdateCreateSubCategoryModal = ({ open, handleCancel, subcategory,getData }:PropType) => {
 
