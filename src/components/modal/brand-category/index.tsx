@@ -14,7 +14,6 @@ const BrandModal = ({ open, handleCancel, brandCategory,categories,getData }:Pro
 
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
-//   console.log(category, 'category')
   useEffect(() => {
     if (brandCategory.name) {
       form.setFieldsValue({

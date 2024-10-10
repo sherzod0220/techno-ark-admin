@@ -11,11 +11,11 @@ const { Option } = Select;
 interface PropType {
     open: boolean,
     handleCancel:()=> void,
-    category: any,
+    product: any,
     getProducts:any
   }
-const Index = ({open,handleCancel,category,getProducts}:PropType) => {
-console.log(category);
+const Index = ({open,handleCancel,product,getProducts}:PropType) => {
+// console.log(product);
 const [categories, setCategories] = useState([]);
 const [brands, setBrands] = useState([]);
 const [categoryid,setCategoryid] = useState(0)
@@ -86,24 +86,24 @@ const [image, setImage] = useState([]);
   }, [brandid]);
 
   useEffect(() => {
-    if (category.name) {
+    if (product.name) {
       form.setFieldsValue({
-        name: category.name,
-        price: category.price,
-        category_id: Number(category.category_id),
-        brand_category_id: Number(category.brand_category_id),
-        brand_id: Number(category.brand_id)
+        name: product.name,
+        price: product.price,
+        category_id: Number(product.category_id),
+        brand_category_id: Number(product.brand_category_id),
+        brand_id: Number(product.brand_id)
       });
     } else {
       form.resetFields();
     }
-  }, [category, form]);
+  }, [product, form]);
   const handleImageChange = (event: any) => {
     setImage(event.target.files[0]);
   };
   const handleSubmit = async(values: any) => {
     // setBootonLoding(true);
-    if (category.id) {
+    if (product.id) {
       // Update the category
       try {
             const datas = {
@@ -113,11 +113,8 @@ const [image, setImage] = useState([]);
               brand_category_id: Number(values.brand_category_id),
               brand_id: Number(values.brand_id)
             }
-            const response = await ProductsService.update(category.id,datas);
+            const response = await ProductsService.update(product.id,datas);
             getProducts()
-            // console.log(category,"kktt");
-            // console.log(values,"this is values");
-            // console.log(values.category_id,"vll");
             if (response?.status === 201) {
                 notification.success({
                     message: "Brand created successfully!",
@@ -252,7 +249,7 @@ const [image, setImage] = useState([]);
               </Select>
             </Form.Item>
             {
-              !category.id ?
+              !product.id ?
             <Form.Item
               label="Product image"
               name="files"
@@ -281,7 +278,7 @@ const [image, setImage] = useState([]);
             //   loading={bootonLoding}
             >
               {
-                !category.id ? "Add Product" : "Edit Product"
+                !product.id ? "Add Product" : "Edit Product"
               }
             </Button>
           </Form.Item>

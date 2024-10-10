@@ -15,7 +15,7 @@ const Index = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const val = new URLSearchParams(location.search)
-  const [category,setCategory] = useState({})
+  const [product,setProduct] = useState({})
   // const [product,setProduct] = useState({})
 
   const [params, setParams] = useState({
@@ -74,28 +74,26 @@ const Index = () => {
   };
   
   const openModal = (item:any) => {
-    setCategory(item)
+    setProduct(item)
     setOpen(true);
   };
 
   const handleCancel = () => {
-    setCategory({})
+    setProduct({})
     setOpen(false);
   };
   const moveSingle = (id: number) => {
     navigate(`/main/products/${id}`);
   };
-
   const deleteData = async (id: number) => {
     // setLoading(true);
-    
     try {
       const response = await ProductsService.delete(id);
       getProducts()
       if (response?.status === 200) {
         Notification({
           type:"success",
-          title: "Category deleted successfully",
+          title: "Product deleted successfully",
         });
         // setIsModalVisible(false);
         // onSuccess();
@@ -103,7 +101,7 @@ const Index = () => {
     } catch (error: any) {
       Notification({
         type:"error",
-        title: `Failed to delete category! ${error?.response?.data?.message},Something went wrong`,
+        title: `Failed to delete Product! ${error?.response?.data?.message},Something went wrong`,
       });
     }
     // setLoading(false);
@@ -141,10 +139,9 @@ const Index = () => {
               id={record.id}
               onConfirm={deleteData}
               onCancel={() => console.log('Cancelled')}
-              title={"Delete this Category ?"}
+              title={"Delete this Product ?"}
             />
           </Tooltip>
-
             <Button
               className="border-[1px] border-[#e74c3c] text-[#e74c3c] p-[10px]"
               // type="default"
@@ -158,7 +155,7 @@ const Index = () => {
   ];
   return (
     <div className="flex flex-col gap-[20px]">
-      <ProductsActions open={open} handleCancel={handleCancel} category={category} getProducts={getProducts}/>
+      <ProductsActions open={open} handleCancel={handleCancel} product={product} getProducts={getProducts}/>
       <div className="flex justify-between items-center">
         <span className="w-[300px]">
             <Search params={params} setParams={setParams}/>

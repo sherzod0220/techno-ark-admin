@@ -12,10 +12,7 @@ interface PropType {
 }
 const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) => {    
   const [loading, setLoading] = useState(false);
-  const [form] = Form.useForm();
-//   console.log(product, 'product')
-//   console.log(detail,"detail");
-  
+  const [form] = Form.useForm();  
   useEffect(() => {
     if (product.name) {
       form.setFieldsValue({
@@ -29,12 +26,8 @@ const BrandModal = ({ open, handleCancel, product,detail,getProduct }:PropType) 
     }
   }, [product, form]);
 
-
   const handleSubmit = async(values: any) => {
-    setLoading(true);
-    // console.log(category.id,"id");
-    // console.log(category.name,"categpry name");
-    
+    setLoading(true);   
     if ( detail?.id ) {
       // Update the category
       try {
