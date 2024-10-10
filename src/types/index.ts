@@ -106,7 +106,7 @@ interface IDetailCreate {
     product_id: number
 }
 
-export interface productDetail {
+export interface ProductDetail {
     // get: (params: IParams)=> any
     create: (data:IDetailCreate) => Promise<any>;
     update: (id: string | number, data: IDetailCreate) => Promise<any>;
