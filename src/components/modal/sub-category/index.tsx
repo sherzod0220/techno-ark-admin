@@ -25,8 +25,11 @@ const UpdateCreateSubCategoryModal = ({ open, handleCancel, subcategory,getData 
       form.resetFields();
     }
   }, [subcategory, form]);
-
-  const handleSubmit = async(values: any) => {
+  interface ITypeValues {
+    name: string
+    parent_category_id: number
+  }
+  const handleSubmit = async(values:ITypeValues) => {
     setLoading(true);
     
     if (subcategory.id) {

@@ -6,14 +6,12 @@ interface DataType {
   key: React.Key;
   name: string;
 }
-
 interface CustomTableProps {
   data: DataType[];
   pagination: TablePaginationConfig;
   onChange: (pagination: TablePaginationConfig) => void;
   columns: any[]
 }
-
 const Table = ({ data, pagination, onChange,columns }:CustomTableProps) => {
   return (
     <AntdTable
