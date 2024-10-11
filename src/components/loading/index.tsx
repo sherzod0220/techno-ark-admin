@@ -9,7 +9,7 @@ const contentStyle: React.CSSProperties = {
 
 const content = <div style={contentStyle} />;
 
-const Index = () => (
+const App: React.FC = () => (
   <Flex gap="middle" vertical>
     <Flex gap="middle">
       <Spin tip="Loading" size="large">
@@ -19,4 +19,4 @@ const Index = () => (
   </Flex>
 );
 
-export default Index;
+export default App;
