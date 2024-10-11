@@ -1,7 +1,9 @@
+import { lazy } from 'react';
+
 import SignIn from './sign-in'
 import SignUp  from './sign-up'
 import MainLayout from './main-layout'
-import Products from './products'
+const Products = lazy(() => import('./products')) 
 import SingleProduct from './single-product'
 import Categories from './categories'
 import SubCategory from './sub-category'
