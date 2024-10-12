@@ -5,12 +5,12 @@ import SignUp  from './sign-up'
 // import MainLayout from './main-layout'
 const MainLayout = lazy(() => import('./main-layout')) 
 const Products = lazy(() => import('./products')) 
-import SingleProduct from './single-product'
+const SingleProduct = lazy(() => import('./single-product')) 
 const Categories = lazy(() => import('./categories')) 
-import SubCategory from './sub-category'
+const SubCategory = lazy(() => import('./sub-category')) 
 const Brands = lazy(() => import('./brands')) 
-import BrandCategories from './brand-categories'
-import Ads from './ads'
-import Stock from './stock'
-import Setting from './setting'
+const BrandCategories = lazy(() => import('./brand-categories')) 
+const Ads = lazy(() => import('./ads')) 
+const Stock = lazy(() => import('./stock')) 
+const Setting = lazy(() => import('./setting')) 
 export { SignIn,SignUp,MainLayout,Products,Categories,Brands,BrandCategories,Ads,Setting,Stock,SubCategory,SingleProduct }
