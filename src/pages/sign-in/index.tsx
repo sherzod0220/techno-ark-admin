@@ -6,10 +6,16 @@ import { useNavigate } from "react-router-dom";
 import Notification from "@notification";
 import img from "../../assets/login.svg";
 import { useState } from "react";
+import { HappyProvider } from '@ant-design/happy-work-theme'
+import {ReloadOutlined} from "@ant-design/icons";
+
 type FieldType = {
   phone_number: string;
   password: string;
 };
+const loadingIcon = (
+  <ReloadOutlined  style={{color:"white", fontSize:"22px"}} spin/>
+)
 const Index = () => {
   const navigate = useNavigate();
   const [loading,setLoading] = useState(false)
@@ -104,6 +110,8 @@ const Index = () => {
             </Form.Item>
 
             <Form.Item className="">
+              <HappyProvider>
+
               <Button
                 type="primary"
                 className="py-[20px] text-[18px]"
@@ -111,8 +119,9 @@ const Index = () => {
                 style={{ background: "#d55200", width: "100%" }}
                 disabled={loading}
               >
-                {loading ? <Spin/> : "Login"}
+                {loading ? <Spin indicator={loadingIcon}/> : "Login"}
               </Button>
+              </HappyProvider>
             </Form.Item>
           </Form>
           <div className="flex gap-[20px] items-center">

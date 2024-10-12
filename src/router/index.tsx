@@ -22,12 +22,12 @@ const Index = () => {
             <Route path="/" element={<App/>}>
                 <Route index element={<SignIn/>}/>
                 <Route path="sign-up" element={<SignUp/>}/>
-                <Route path="main/*" element={<MainLayout/>}>
-                    <Route index element={<React.Suspense fallback={<h1  className='w-screen h-screen flex justify-center items-center'><Spinner/></h1>}><Products/></React.Suspense>}/>
+                <Route path="main/*" element={<React.Suspense fallback={<h1  className='w-screen h-screen flex justify-center items-center position-relative'><Spinner/></h1>}><MainLayout/></React.Suspense>}>
+                    <Route index element={<React.Suspense fallback={<h1  className='w-screen h-screen flex justify-center items-center position-relative'><Spinner/></h1>}><Products/></React.Suspense>}/>
                     <Route path="products/:id" element={<SingleProduct/>}/>
-                    <Route path="categories" element={<Categories/>}/>
+                    <Route path="categories" element={<React.Suspense fallback={<h1  className='w-screen h-screen flex justify-center items-center position-relative'><Spinner/></h1>}><Categories/></React.Suspense>}/>
                     <Route path="categories/:id" element={<SubCategory/>}/>
-                    <Route path="brands" element={<Brands/>}/>
+                    <Route path="brands" element={<React.Suspense fallback={<h1  className='w-screen h-screen flex justify-center items-center position-relative'><Spinner/></h1>}><Brands/></React.Suspense>}/>
                     <Route path="brand-categories" element={<BrandCategories/>}/>
                     <Route path="ads" element={<Ads/>}/>
                     <Route path="stock" element={<Stock/>}/>
