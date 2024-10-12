@@ -164,7 +164,7 @@ const Index = () => {
         </span>
         <div className="flex justify-between my-2">
           <Tooltip title="Add Product">
-            <Button type="primary" onClick={()=>setOpen(true)} style={{background: "#d55200"}}>Add Product</Button>
+            <Button type="primary" onClick={()=>setOpen(true)}>Add Product</Button>
           </Tooltip>
         </div>
         

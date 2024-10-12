@@ -27,6 +27,10 @@ const Index = () => {
     useEffect(() => {
         getProduct();
     }, []);
+    console.log(product,"product");
+    console.log(detail, "detail");
+    
+    
     
     const openModal =()=>{  
         setOpen(true)
@@ -72,7 +76,7 @@ const Index = () => {
                     </div>
                     <div className="flex items-center gap-[20px]">
                         <h2 className="text-[24px] font-semibold">Product detail</h2>
-                        <Tooltip title="Add Brand">
+                        <Tooltip title="Add Product Detail">
                             <Button type="primary" onClick={()=>setOpen(true)}>Add Product Detail</Button>
                         </Tooltip>
                     </div>

@@ -120,7 +120,7 @@ const Index = () => {
               type="default"
               icon={<EditOutlined/>}
               onClick={()=>openModal(record)}
-              style={{width:"45px", color:"#d55200", borderColor:"#d55200"}}
+              style={{width:"45px", color:"green", borderColor:"green"}}
             //   className="hover:border-[blue]"
             />
           </Tooltip>

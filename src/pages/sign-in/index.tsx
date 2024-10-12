@@ -1,21 +1,21 @@
 import { auth } from "@service";
 import { saveData } from "@token-service";
 import type { FormProps } from "antd";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input,Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import Notification from "@notification";
-// import Notification from "../ads";
-// import { ToastContainer } from "react-toastify";
 import img from "../../assets/login.svg";
+import { useState } from "react";
 type FieldType = {
   phone_number: string;
   password: string;
 };
-
 const Index = () => {
   const navigate = useNavigate();
+  const [loading,setLoading] = useState(false)
 
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    setLoading(true)
     try {
       const response: any = await auth.sign_in(values);
       if (response && response.status === 201) {
@@ -31,7 +31,7 @@ const Index = () => {
           saveData("access_token", access_token);
           saveData("id", data?.data?.id);
           navigate("/main");
-          console.log(response);
+          console.log(response,"response");
           console.log(data.data.id, "tokedata");
         } else {
           console.error(
@@ -49,6 +49,8 @@ const Index = () => {
     } catch (error) {
       console.error("Error during sign-in:", error);
         Notification({type: "error",title: `incorrect phone number or password, try again, Error during sign-in: ${error}`})
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -107,8 +109,9 @@ const Index = () => {
                 className="py-[20px] text-[18px]"
                 htmlType="submit"
                 style={{ background: "#d55200", width: "100%" }}
+                disabled={loading}
               >
-                Login
+                {loading ? <Spin/> : "Login"}
               </Button>
             </Form.Item>
           </Form>
