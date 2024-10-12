@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Form, Input, Modal } from "antd";
 import Notification from "@notification";
 import { CategoryService } from "@service";
+import { HappyProvider } from "@ant-design/happy-work-theme";
 
 interface PropType {
   open: boolean,
@@ -94,6 +95,7 @@ const UpdateCreateCategoryModal = ({ open, handleCancel, category,getData }:Prop
             <Input size="large" />
           </Form.Item>
           <Form.Item>
+            <HappyProvider>
             <Button
               size="large"
               style={{ width: "100%" }}
@@ -103,6 +105,7 @@ const UpdateCreateCategoryModal = ({ open, handleCancel, category,getData }:Prop
             >
               {category.id ? "Update" : "Add"}
             </Button>
+            </HappyProvider>
           </Form.Item>
         </Form>
       </Modal>

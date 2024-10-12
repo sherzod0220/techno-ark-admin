@@ -3,6 +3,7 @@ import { Button, Form, Input, Modal } from "antd";
 import { SubCategoryService } from "@service";
 import { useParams } from 'react-router-dom';
 import Notification from "@notification";
+import { HappyProvider } from "@ant-design/happy-work-theme";
 interface PropType {
   open: boolean,
   handleCancel:()=> void,
@@ -98,6 +99,7 @@ const UpdateCreateSubCategoryModal = ({ open, handleCancel, subcategory,getData 
             <Input size="large" />
           </Form.Item>
           <Form.Item>
+            <HappyProvider>
             <Button
               size="large"
               style={{ width: "100%",background:"#d55200" }}
@@ -107,6 +109,7 @@ const UpdateCreateSubCategoryModal = ({ open, handleCancel, subcategory,getData 
             >
               {subcategory.id ? "Update" : "Add"}
             </Button>
+            </HappyProvider>
           </Form.Item>
         </Form>
       </Modal>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Form, Input, Modal } from "antd";
 import Notification from "@notification";
 import { AdsService } from "@service";
+import { HappyProvider } from "@ant-design/happy-work-theme";
 interface PropType {
   open: boolean,
   handleCancel:()=> void,
@@ -87,6 +88,7 @@ const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
             <Input onChange={handleImageChange} type="file" size="large" />
           </Form.Item>
           <Form.Item>
+            <HappyProvider>
             <Button
               size="large"
               style={{ width: "100%" }}
@@ -96,6 +98,7 @@ const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
             >
               Add
             </Button>
+            </HappyProvider>
           </Form.Item>
         </Form>
       </Modal>

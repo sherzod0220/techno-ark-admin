@@ -3,6 +3,7 @@ import { Button, Form, Input, Modal,Select } from "antd";
 import Notification from "@notification";
 const { TextArea } = Input;
 import { BrandService } from "@service";
+import { HappyProvider } from "@ant-design/happy-work-theme";
 const { Option } = Select;
 interface PropType {
   open: boolean,
@@ -144,6 +145,7 @@ const BrandModal = ({ open, handleCancel, brand,categories,getData }:PropType) =
             <TextArea rows={4} />
           </Form.Item>
           <Form.Item>
+            <HappyProvider>
             <Button
               size="large"
               style={{ width: "100%",background:"" }}
@@ -153,6 +155,7 @@ const BrandModal = ({ open, handleCancel, brand,categories,getData }:PropType) =
             >
               {brand.id ? "Update" : "Add"}
             </Button>
+            </HappyProvider>
           </Form.Item>
         </Form>
       </Modal>

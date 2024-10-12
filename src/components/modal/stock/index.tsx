@@ -3,6 +3,7 @@ import { Button, Form, Input, Modal,Select } from "antd";
 // import { PlusOutlined } from '@ant-design/icons';
 import { CategoryService, BrandService,ProductsService,StockService } from "@service";
 import Notification from "@notification";
+import { HappyProvider } from "@ant-design/happy-work-theme";
 
 const { Option } = Select;
 interface PropType {
@@ -241,6 +242,7 @@ const BrandModal = ({ open, handleCancel, stock,getData }:PropType) => {
             </Form.Item>    
 
           <Form.Item>
+            <HappyProvider>
             <Button
               size="large"
               style={{ width: "100%",background:"#d55200" }}
@@ -250,6 +252,7 @@ const BrandModal = ({ open, handleCancel, stock,getData }:PropType) => {
             >
               {stock.id ? "Update" : "Add"}
             </Button>
+            </HappyProvider>
           </Form.Item>
         </Form>
       </Modal>

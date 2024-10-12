@@ -6,6 +6,7 @@ import { CategoryService, BrandService, BrandCategoryService, ProductsService } 
 import Notification from '@notification';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { HappyProvider } from '@ant-design/happy-work-theme';
 const { Option } = Select;
 
 interface PropType {
@@ -272,6 +273,7 @@ const [image, setImage] = useState([]);
           </div>
 
           <Form.Item>
+            <HappyProvider>
             <Button
               size="large"
               style={{ width: "100%" }}
@@ -283,6 +285,7 @@ const [image, setImage] = useState([]);
                 !product.id ? "Add Product" : "Edit Product"
               }
             </Button>
+            </HappyProvider>
           </Form.Item>
         </Form>
       </Drawer>
