@@ -7,6 +7,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { StockActions } from "@modals";
 import { GlobalDelete } from "@components"
 import Notification from "@notification";
+import { HappyProvider } from "@ant-design/happy-work-theme";
 const Index = () => {
   const [data, setData] = useState([]);
   const [open,setOpen] = useState(false)
@@ -153,7 +154,9 @@ const Index = () => {
         </span>
         <div className="flex justify-between my-2">
         <Tooltip title="Add item">
+          <HappyProvider>
           <Button type="primary" onClick={()=>setOpen(true)} style={{background: "#d55200"}}>Add item</Button>
+          </HappyProvider>
         </Tooltip>
         </div>
       </div>

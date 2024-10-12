@@ -5,6 +5,7 @@ import { saveData } from "@token-service"
 import { useNavigate } from "react-router-dom"
 import img from '../../assets/login.svg'
 import Notification from "@notification"
+import { HappyProvider } from '@ant-design/happy-work-theme'
 type FieldType = {
     first_name: string,
     last_name: string,
@@ -111,9 +112,11 @@ type FieldType = {
 
         
             <Form.Item  className=''>
+              <HappyProvider>
                 <Button type="primary" className='py-[20px] text-[18px]' htmlType="submit" style={{background: "#e74c3c", width:"100%"}}>
-                    register-
+                    register
                 </Button>
+              </HappyProvider>
             </Form.Item>
             </Form>
             <div className='flex gap-[20px] items-center'>

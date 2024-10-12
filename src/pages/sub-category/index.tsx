@@ -8,6 +8,7 @@ import { SubCategoryAddUpdate } from "@modals";
 import { useParams } from "react-router-dom";
 import { GlobalDelete } from "@components"
 import Notification from "@notification";
+import { HappyProvider } from "@ant-design/happy-work-theme";
 const Index = () => {
   const [data, setData] = useState([]);
   const [open,setOpen] = useState(false)
@@ -149,7 +150,9 @@ const Index = () => {
         </span>
         <div className="flex justify-between my-2">
         <Tooltip title="Add Sub Category">
+          <HappyProvider>
           <Button type="primary" onClick={()=>setOpen(true)} style={{background: ""}}>Add Sub Category</Button>
+          </HappyProvider>
         </Tooltip>
         </div>
       </div>

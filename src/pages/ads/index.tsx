@@ -6,6 +6,7 @@ import { Button, Space, Tooltip } from "antd";
 import { AdsActions } from "@modals";
 import { GlobalDelete } from '@components'
 import Notification from "@notification";
+import { HappyProvider } from '@ant-design/happy-work-theme'
 const Index = () => {
   const [data, setData] = useState([]);
   const [open,setOpen] = useState(false)
@@ -94,7 +95,9 @@ const Index = () => {
       <div className="flex justify-between items-center">
         <div className="flex justify-end w-full my-2">
         <Tooltip title="Add Brand">
+          <HappyProvider>
           <Button type="primary" onClick={()=>setOpen(true)}>Add Brand</Button>
+          </HappyProvider>
         </Tooltip>
         </div>
       </div>

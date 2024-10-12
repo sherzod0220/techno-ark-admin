@@ -7,6 +7,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { GlobalDelete } from "@components"
 import Notification from "@notification";
 import { ProductDetailService } from "@service";
+import { HappyProvider } from '@ant-design/happy-work-theme'
 
 const Index = () => {
     const {id}: any = useParams()    
@@ -77,7 +78,9 @@ const Index = () => {
                     <div className="flex items-center gap-[20px]">
                         <h2 className="text-[24px] font-semibold">Product detail</h2>
                         <Tooltip title="Add Product Detail">
-                            <Button type="primary" onClick={()=>setOpen(true)}>Add Product Detail</Button>
+                            <HappyProvider>
+                                <Button type="primary" onClick={()=>setOpen(true)}>Add Product Detail</Button>
+                            </HappyProvider>
                         </Tooltip>
                     </div>
                 </div>
