@@ -7,14 +7,15 @@ import Notification from "@notification";
 import img from "../../assets/login.svg";
 import { useState } from "react";
 import { HappyProvider } from '@ant-design/happy-work-theme'
-import {ReloadOutlined} from "@ant-design/icons";
+// import {ReloadOutlined} from "@ant-design/icons";
+import {HistoryOutlined} from "@ant-design/icons";
 
 type FieldType = {
   phone_number: string;
   password: string;
 };
 const loadingIcon = (
-  <ReloadOutlined  style={{color:"white", fontSize:"22px"}} spin/>
+  <HistoryOutlined  style={{color:"white", fontSize:"22px"}} spin/>
 )
 const Index = () => {
   const navigate = useNavigate();

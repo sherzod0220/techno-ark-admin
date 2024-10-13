@@ -89,15 +89,15 @@ const BrandModal = ({ open, handleCancel, category,getData }:PropType) => {
           </Form.Item>
           <Form.Item>
             <HappyProvider>
-            <Button
-              size="large"
-              style={{ width: "100%" }}
-              type="primary"
-              htmlType="submit"
-              loading={loading}
-            >
-              Add
-            </Button>
+              <Button
+                size="large"
+                style={{ width: "100%" }}
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+              >
+                Add
+              </Button>
             </HappyProvider>
           </Form.Item>
         </Form>
