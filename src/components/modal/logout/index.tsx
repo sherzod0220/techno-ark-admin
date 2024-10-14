@@ -30,8 +30,8 @@ const Index = () => {
         size="large"
         type="text"
       >
-        <LogoutOutlined style={{ fontSize: "22px" }} />
-        <span className="font-semibold text-[22px]">Logout</span>
+        <LogoutOutlined style={{ fontSize: "20px" }} />
+        <span className="font-semibold text-[20px]">Logout</span>
       </Button>
       <Modal
         open={isModalVisible}

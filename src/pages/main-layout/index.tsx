@@ -55,7 +55,8 @@ const App: React.FC = () => {
           <img
             src={logo}
             alt="Main Logo"
-            style={{ width: collapsed ? 40 : 48 }}
+            // style={{ width: collapsed ? 48 : 48 }}
+            style={{width: 40}}
           />
           {!collapsed && (
             <h1 className='text-[22px] text-[#d55200] font-extrabold'>EXNOARK</h1>
